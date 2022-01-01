@@ -1,0 +1,56 @@
+Given a string s, check if it can be constructed by taking a substring of it and appending multiple copies of the substring together.
+
+ 
+
+Example 1:
+
+Input: s = "abab"
+Output: true
+Explanation: It is the substring "ab" twice.
+
+
+Solution 
+
+class Solution:
+    def repeatedSubstringPattern(self, s: str) -> bool:
+        ss = (s + s)[1:-1]
+        return(s in ss)
+
+
+Solution 2
+txt = "abab"
+x = bool(re.search(r"^(\w+)\1+$", txt))
+print(x)
+
+
+Solution 3
+
+n = len(s)
+print(n)
+print(n//2+1)
+for i in range(1, n//2 + 1):
+    print(i)
+    print("n%i {}".format(n%i))
+    print("s[:i] {}".format(s[:i]))
+    print("(n//i) {}".format((n//i)))
+    print("s[:i] * (n//i) {}".format(s[:i] * (n//i)))
+    if n%i == 0 and s[:i] * (n//i) == s:
+        print("inside")
+        print(True)
+
+Solution 4
+n = len(s)
+for i in range(1, n):
+    if n % i == 0:
+        new_str = s[:i] * (n//i)
+        if new_str == s:
+            print(True)
+print(False)
+
+Solution 5:
+
+ for i in range(1, len(s)//2+1):
+    if s[:i] * (len(s)//i) == s:
+        print(True)
+
+        

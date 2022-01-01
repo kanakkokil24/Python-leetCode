@@ -1,0 +1,46 @@
+Given an array of strings wordsDict and two different strings that already exist in the array word1 and word2, return the shortest distance between these two words in the list.
+
+ 
+
+Example 1:
+
+Input: wordsDict = ["practice", "makes", "perfect", "coding", "makes"], word1 = "coding", word2 = "practice"
+Output: 3
+
+
+Solution 
+
+class Solution:
+    def shortestDistance(self, wordsDict: List[str], word1: str, word2: str) -> int:
+        indx = 0
+        list1 = []
+        list2 = []
+        for i in range(wordsDict.count(word1)):
+            indx=wordsDict.index(word1,indx)
+            list1.append(indx)
+            indx=indx+1
+        indx = 0   
+        for i in range(wordsDict.count(word2)):
+            indx=wordsDict.index(word2,indx)
+            list2.append(indx)
+            indx=indx+1
+        temp = 0
+        return(min([abs(x-y) for x in list1 for y in list2]))
+
+solution 
+
+class Solution:
+    def shortestDistance(self, wordsDict: List[str], word1: str, word2: str) -> int:
+        from collections import defaultdict
+        d = defaultdict(list)
+        for index, value in enumerate(wordsDict):
+             if value == word1 or value == word2:
+                    d[value].append(index)
+
+        distance=[]
+        for i in d[word1]:
+            for j in d[word2]:
+                distance.append(abs(i-j))
+        return(min(distance))
+
+        

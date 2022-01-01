@@ -1,0 +1,39 @@
+171. Excel Sheet Column Number
+
+Given a string columnTitle that represents the column title as appear in an Excel sheet, return its corresponding column number.
+
+For example:
+
+A -> 1
+B -> 2
+C -> 3
+...
+Z -> 26
+AA -> 27
+AB -> 28 
+...
+ 
+
+Example 1:
+
+Input: columnTitle = "A"
+Output: 1
+
+
+Solution 
+
+class Solution:
+    def titleToNumber(self, columnTitle: str) -> int:
+        length = len(columnTitle)
+        number =0
+        for z in columnTitle:
+            x,y = divmod(ord(z),65)
+            if length < 2:
+                number = number +(x+y)
+            else:
+                length = length -1
+                number = number+pow(26,length)*(x+y)        
+
+        return(number)
+
+        
