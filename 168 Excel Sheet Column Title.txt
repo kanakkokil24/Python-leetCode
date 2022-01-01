@@ -1,0 +1,35 @@
+168. Excel Sheet Column Title
+
+Given an integer columnNumber, return its corresponding column title as it appears in an Excel sheet.
+
+For example:
+
+A -> 1
+B -> 2
+C -> 3
+...
+Z -> 26
+AA -> 27
+AB -> 28 
+...
+ 
+
+Example 1:
+
+Input: columnNumber = 1
+Output: "A"
+
+Solution :
+
+class Solution:
+    def convertToTitle(self, columnNumber: int) -> str:
+        s = ''
+        while columnNumber > 0:
+            remainder = columnNumber%26
+            if remainder == 0: remainder = 26
+            s = chr(64+remainder)+s
+            columnNumber = (columnNumber-remainder)//26
+        return(s)
+
+
+        
