@@ -12,4 +12,3 @@ Example 2:
 
 Input: s = "aeiou"
 Output: ""
-a
