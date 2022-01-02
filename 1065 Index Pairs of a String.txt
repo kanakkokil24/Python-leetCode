@@ -1,0 +1,35 @@
+1065. Index Pairs of a String
+
+Given a string text and an array of strings words, return an array of all index pairs [i, j] so that the substring text[i...j] is in words.
+
+Return the pairs [i, j] in sorted order (i.e., sort them by their first coordinate, and in case of ties sort them by their second coordinate).
+
+ 
+
+Example 1:
+
+Input: text = "thestoryofleetcodeandme", words = ["story","fleet","leetcode"]
+Output: [[3,7],[9,13],[10,17]]
+
+Solution 
+
+class Solution:
+    def indexPairs(self, text: str, words: List[str]) -> List[List[int]]:
+        list2=[]
+        for x in words:
+            i=0
+            length = len(x)
+            while i < len(text):
+                list1 = []
+                y = text.find(x,i)
+                if y is -1:
+                    i = i+1
+                else:
+                    list1.append(y)
+                    list1.append(y+length-1)
+                    i = y+1
+                if not list1:
+                    pass
+                else:
+                    list2.append(list1)
+        return(sorted(list2))

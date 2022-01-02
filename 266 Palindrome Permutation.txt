@@ -1,0 +1,24 @@
+266. Palindrome Permutation
+
+Given a string s, return true if a permutation of the string could form a palindrome.
+
+ 
+
+Example 1:
+
+Input: s = "code"
+Output: false
+
+Solution 
+
+class Solution:
+    def canPermutePalindrome(self, s: str) -> bool:
+        import collections
+        y = collections.Counter(s)
+        count=0
+        for x in y.values():
+            if x%2!=0:
+                count = count+1
+            if count==2:
+                return(False)
+        return(True)
