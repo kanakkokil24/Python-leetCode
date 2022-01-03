@@ -1,0 +1,77 @@
+500. Keyboard Row
+
+Given an array of strings words, return the words that can be typed using letters of the alphabet on only one row of American keyboard like the image below.
+
+In the American keyboard:
+
+the first row consists of the characters "qwertyuiop",
+the second row consists of the characters "asdfghjkl", and
+the third row consists of the characters "zxcvbnm".
+
+ 
+
+Example 1:
+
+Input: words = ["Hello","Alaska","Dad","Peace"]
+Output: ["Alaska","Dad"]
+Example 2:
+
+Input: words = ["omk"]
+Output: []
+Example 3:
+
+Input: words = ["adsdf","sfd"]
+Output: ["adsdf","sfd"]
+
+Solution 1
+
+class Solution:
+    def findWords(self, words: List[str]) -> List[str]:
+        first = "qwertyuiop"
+        second = "asdfghjkl"
+        third = "zxcvbnm"
+        ans = []
+        for word in words:
+            tt = False
+            mt = False
+            bt = False
+            for letter in word:
+                if letter in first:
+                    tt = True
+                if letter in second:
+                    mt = True
+                if letter in third:
+                    bt = True
+            lier=[tt,mt,bt]
+            if lier.count(True) == 1:
+                ans.append(word)
+        return(ans)
+
+Solution 2
+
+dic = {1:{'q','w','e','r','t','y','u','i','o','p'},
+      2:{'a','s','d','f','g','h','j','k','l'},
+      3:{'z','x','c','v','b','n','m'}}
+#print(dic)
+words = ["Hello","Alaska","Dad","Peace"]
+group=0
+res = []
+for word in words:
+    if word[0] in dic[1] or word[0].lower() in dic[1]:
+        group = 1
+    elif word[0] in dic[2] or word[0].lower() in dic[2]:
+        group = 2
+    elif word[0] in dic[3] or word[0].lower() in dic[3]:
+        group = 3
+#    print(word,group)
+    
+    for i in range(1,len(word)):
+#        print(word)
+#        print(dic[group])
+        if word[i] not in dic[group]:
+            break
+        
+    else:
+        res.append(word)
+#        print(res)
+print(res)        
