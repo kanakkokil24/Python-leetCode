@@ -1,0 +1,62 @@
+1933. Check if String Is Decomposable Into Value-Equal Substrings
+
+A value-equal string is a string where all characters are the same.
+
+For example, "1111" and "33" are value-equal strings.
+In contrast, "123" is not a value-equal string.
+Given a digit string s, decompose the string into some number of consecutive value-equal substrings where exactly one substring has a length of 2 and the remaining substrings have a length of 3.
+
+Return true if you can decompose s according to the above rules. Otherwise, return false.
+
+A substring is a contiguous sequence of characters in a string.
+
+ 
+
+Example 1:
+
+Input: s = "000111000"
+Output: false
+Explanation: s cannot be decomposed according to the rules because ["000", "111", "000"] does not have a substring of length 2.
+Example 2:
+
+Input: s = "00011111222"
+Output: true
+Explanation: s can be decomposed into ["000", "111", "11", "222"].
+Example 3:
+
+Input: s = "011100022233"
+Output: false
+Explanation: s cannot be decomposed according to the rules because of the first '0'.
+
+Solution 
+
+
+class Solution:
+    def isDecomposable(self, s: str) -> bool:
+        stack = []
+        i = 0
+        if len(s)==1:
+            return(False)
+        while i < len(s):
+            if s[0] != s[1] or s[-2]!=s[-1]:
+                return(False)
+            if i < (len(s)-2) and s[i] == s[i+1] and s[i+1]== s[i+2]:
+                stack.append(s[i]+s[i+1]+s[i+2])
+                i = i+3
+            elif i < (len(s)-2) and s[i] == s[i+1] and s[i+1]!= s[i+2]:
+                stack.append(s[i]+s[i+1])
+                i = i+2
+            elif i < (len(s)-1) and s[i] == s[i+1]:
+                stack.append(s[i]+s[i+1])
+                i = i+2
+            else:
+                i = i+1
+                return(False)
+        count = 0
+        for x in stack:
+            if len(x) == 2:
+                count = count+1
+        if count ==1:
+            return(True)
+        else:
+            return(False)
